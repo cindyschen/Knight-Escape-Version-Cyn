@@ -20,6 +20,10 @@ border_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8l2s7"]
 bg_color = Color(0.79038244, 0.5044361, 0.5786631, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
 
 [resource]
 default_font = ExtResource("2_fphlw")
