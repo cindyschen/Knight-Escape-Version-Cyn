@@ -1,0 +1,94 @@
+[gd_scene format=3 uid="uid://bgwk6u4ibbby6"]
+
+[ext_resource type="Script" uid="uid://ksnfc3w0mxr5" path="res://scripts/main_menu.gd" id="1_ekxnf"]
+[ext_resource type="PackedScene" uid="uid://biw045eb7q400" path="res://scenes/button.tscn" id="1_l6cm7"]
+[ext_resource type="FontFile" uid="uid://b537tpw7c76m8" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_bqqt6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wu84c"]
+bg_color = Color(0.15686275, 0.5568628, 0.61960787, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ln24"]
+bg_color = Color(0.18726102, 0.6694532, 0.74269587, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_voaib"]
+bg_color = Color(0.79038244, 0.5044361, 0.5786631, 1)
+
+[sub_resource type="Theme" id="Theme_bqqt6"]
+default_font = ExtResource("2_bqqt6")
+default_font_size = 24
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/font_sizes/font_size = 24
+Button/styles/hover = SubResource("StyleBoxFlat_wu84c")
+Button/styles/normal = SubResource("StyleBoxFlat_8ln24")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_voaib")
+RichTextLabelLevels/base_type = &"RichTextLabel"
+RichTextLabelLevels/font_sizes/normal_font_size = 32
+RichTextLabelTitle/base_type = &"RichTextLabel"
+RichTextLabelTitle/colors/default_color = Color(1, 1, 1, 1)
+RichTextLabelTitle/constants/line_separation = 0
+RichTextLabelTitle/font_sizes/bold_font_size = 16
+RichTextLabelTitle/font_sizes/normal_font_size = 64
+
+[node name="MainMenu" type="Control" unique_id=809000349]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ekxnf")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1851366907]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_bqqt6")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=1026710284]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Title" type="RichTextLabel" parent="PanelContainer/VBoxContainer" unique_id=657745053]
+custom_minimum_size = Vector2(500, 300)
+layout_mode = 2
+theme_type_variation = &"RichTextLabelTitle"
+text = "Knight Escape: Version Cyn"
+fit_content = true
+autowrap_mode = 2
+horizontal_alignment = 1
+
+[node name="Play" parent="PanelContainer/VBoxContainer" unique_id=122611149 instance=ExtResource("1_l6cm7")]
+custom_minimum_size = Vector2(250, 75)
+custom_maximum_size = Vector2(250, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Settings" parent="PanelContainer/VBoxContainer" unique_id=339717919 instance=ExtResource("1_l6cm7")]
+visible = false
+custom_minimum_size = Vector2(250, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "SETTINGS"
+
+[node name="Quit" parent="PanelContainer/VBoxContainer" unique_id=1981083403 instance=ExtResource("1_l6cm7")]
+custom_minimum_size = Vector2(250, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "QUIT"
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

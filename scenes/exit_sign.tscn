@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://ce81pxe44hr2y"]
+
+[ext_resource type="Script" uid="uid://dkrfyukk1od35" path="res://scripts/exit_sign.gd" id="1_fe306"]
+[ext_resource type="Texture2D" uid="uid://bmtupdf6utnes" path="res://assets/sprites/world_tileset.png" id="1_pbhcq"]
+[ext_resource type="AudioStream" uid="uid://1djvm1h7raw0" path="res://assets/sounds/power_up.wav" id="2_p52ks"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1he41"]
+size = Vector2(14, 14)
+
+[node name="ExitSign" type="Area2D" unique_id=1829411433]
+collision_mask = 2
+script = ExtResource("1_fe306")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1726301520]
+texture = ExtResource("1_pbhcq")
+region_enabled = true
+region_rect = Rect2(129, 50, 14, 14)
+
+[node name="TeleportSound" type="AudioStreamPlayer2D" parent="." unique_id=904060358]
+stream = ExtResource("2_p52ks")
+bus = &"SFX"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=739086022]
+shape = SubResource("RectangleShape2D_1he41")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
