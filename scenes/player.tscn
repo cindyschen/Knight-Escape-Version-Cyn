@@ -214,3 +214,7 @@ bus = &"SFX"
 [node name="HitSound" type="AudioStreamPlayer2D" parent="." unique_id=226457122]
 stream = ExtResource("4_dqkch")
 bus = &"SFX"
+
+[node name="CoyoteTimer" type="Timer" parent="." unique_id=521047630]
+wait_time = 0.08
+one_shot = true

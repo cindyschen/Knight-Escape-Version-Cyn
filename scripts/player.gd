@@ -6,10 +6,12 @@ const JUMP_VELOCITY = -300.0
 const MAX_JUMPS = 2
 var jumps = 0
 var dead = false
+var was_on_floor = false
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var jump_sound: AudioStreamPlayer2D = $JumpSound
 @onready var hit_sound: AudioStreamPlayer2D = $HitSound
 @onready var pause_menu: CanvasLayer = $"../PauseMenu"
+@onready var coyote_timer: Timer = $CoyoteTimer
 
 func die() -> void:
 	if dead:
@@ -22,22 +24,31 @@ func die() -> void:
 	await animated_sprite.animation_finished
 
 func _physics_process(delta: float) -> void:
+	
+	if is_on_floor():
+		jumps = 0
+		coyote_timer.stop()
+	elif was_on_floor and velocity.y >=0:
+		coyote_timer.start()
+		jumps = 1
+		
+	was_on_floor = is_on_floor()
+		
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and not dead:
-		if is_on_floor():
-			jumps = 0
+		if is_on_floor() or not coyote_timer.is_stopped():
+			jumps = 1
+			coyote_timer.stop()
+			jump_sound.play()
+			velocity.y = JUMP_VELOCITY
+		elif jumps < MAX_JUMPS:
 			jump_sound.play()
 			velocity.y = JUMP_VELOCITY
 			jumps += 1
-		else:
-			if jumps < MAX_JUMPS:
-				jump_sound.play()
-				velocity.y = JUMP_VELOCITY
-				jumps += 1
 			
 
 	# Get the input direction and handle the movement/deceleration.
@@ -53,7 +64,6 @@ func _physics_process(delta: float) -> void:
 	# Play animations
 	if not dead:
 		if is_on_floor():
-			jumps = 1
 			if direction == 0:
 				animated_sprite.play("idle")
 			else:
