@@ -243,15 +243,19 @@ coin_id = "Coin12"
 
 [node name="Slime" parent="Slimes" unique_id=1492733175 instance=ExtResource("8_y1e0c")]
 position = Vector2(648, 96)
+SPEED = 60
 
 [node name="Slime2" parent="Slimes" unique_id=552763018 instance=ExtResource("8_y1e0c")]
 position = Vector2(1080, 80)
+SPEED = 60
 
 [node name="Slime4" parent="Slimes" unique_id=959280088 instance=ExtResource("8_y1e0c")]
 position = Vector2(1208, 81)
+SPEED = 60
 
 [node name="Slime3" parent="Slimes" unique_id=1499662397 instance=ExtResource("8_y1e0c")]
 position = Vector2(1144, 80)
+SPEED = 60
 
 [node name="Labels" type="Node" parent="." unique_id=433158652]
 

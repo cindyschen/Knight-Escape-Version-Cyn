@@ -33,13 +33,11 @@ func _physics_process(delta: float) -> void:
 			jump_sound.play()
 			velocity.y = JUMP_VELOCITY
 			jumps += 1
-			print(jumps)
 		else:
 			if jumps < MAX_JUMPS:
 				jump_sound.play()
 				velocity.y = JUMP_VELOCITY
 				jumps += 1
-				print(jumps)
 			
 
 	# Get the input direction and handle the movement/deceleration.
